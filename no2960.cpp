@@ -66,6 +66,7 @@ int main()
 
     cout << answer << endl;
 
+/* 출력 코드 */
 //     iList.sort();
 //     list<int>::iterator print_iter = iList.begin();
 //    // 값이 잘 들어갔는지 출력
