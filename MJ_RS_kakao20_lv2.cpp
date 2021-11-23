@@ -5,69 +5,60 @@ using namespace std;
 
 int main(void)
 {
-    string s = "abcabcabcabcdededededede";
+    string s = "abcabcdede";
 
-    int unit = 6;
-
-    string curT;
-    string nextT;
-    string result;
+    string curT, nextT, result;
     
     int count = 1;
-
-    curT = s.substr(0, unit);
-
-    int i = unit;
-    while(true)
+    int len = s.length();
+    int answer = len;
+    
+    for(int unit=1; unit<=(len/2); unit++)
     {
-        if(i+unit <= s.length())
-        {
-            nextT = s.substr(i, unit);
-        }
-        else
-        {
-            cout<<"last----------"<<endl;
-            if(count > 1)
-            {
-                result.append(to_string(count));
-                
-            }
-            result.append(curT);
+        curT = s.substr(0, unit);
 
-            for(int j=i; j<s.length(); j++)
-            {
-                result.push_back(s[j]);
-            }
-            break;
-        }
-        
-        cout << "curT = " << curT << endl;
-        cout << "nextT = " << nextT << endl;
-        if (!curT.compare(nextT))
+        int i = unit;
+        while (true)
         {
-            count++;
-        }
-        else
-        {
-            cout << ">> count = " << count << endl;
-            if (count > 1)
+            /* 예외: 남은 글자 수가 단위보다 적은 경우 */
+            if(i+unit > s.length())
             {
-                result.append(to_string(count));
+                if (count > 1)
+                    result.append(to_string(count));
                 result.append(curT);
-                count = 1;
+
+                for (int j = i; j < s.length(); j++)
+                    result.push_back(s[j]);
+                break;
+            }
+
+            nextT = s.substr(i, unit);
+
+            if (!curT.compare(nextT))
+            {
+                count++;
             }
             else
             {
+                if (count > 1)
+                {
+                    result.append(to_string(count));
+                    count = 1;
+                }
+                
                 result.append(curT);
+                curT = nextT;
             }
-            curT = nextT;
+            i += unit;
         }
-        i += unit;
 
+        if(answer > result.length())
+            answer = result.length();   
 
-        cout<<"result = "<<result<<endl;
+        result.clear();
+        count = 1;
     }
-    cout<<result<<endl;
+    
+    return answer;
 
-    return 0;
 }
