@@ -4,7 +4,7 @@ using namespace std;
 #define MAX 20
 #define WHITE 0
 #define BLACK 1
-
+ 
 void PrintBoard(vector<vector<int>> &inputArr);
 
 // 1. 3차원 배열 
