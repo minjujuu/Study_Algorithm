@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stack>
 using namespace std;
-
+ 
 int ConvertToBinary(int n, stack<int>& stc)
 {
     if(n == 0)
