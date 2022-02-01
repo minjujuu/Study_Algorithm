@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// 교훈: 반례찾기
 class Bridge
 {
     public:
