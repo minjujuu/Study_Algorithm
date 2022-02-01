@@ -1,3 +1,4 @@
+// 백준 2960 배열버전
 #include <iostream>
 #include <list>
 using namespace std;
