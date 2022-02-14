@@ -1,3 +1,4 @@
+// 소수 찾기 https://programmers.co.kr/learn/courses/30/lessons/42839
 #include <string>
 #include <vector>
 #include <iostream>
@@ -26,7 +27,7 @@ bool IsNumbersMember(int num, string numbers) {
         if(tempstr.find(numstr[i]) == string::npos) {
             return false;
         }
-        else {
+        else { 
             tempstr.erase(tempstr.find(numstr[i]),1);
         }
     }
