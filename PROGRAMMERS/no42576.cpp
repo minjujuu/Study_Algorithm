@@ -1,3 +1,4 @@
+// 완주하지 못한 선수 https://programmers.co.kr/learn/courses/30/lessons/42576
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -5,26 +6,22 @@ using namespace std;
 
 string solution(vector<string> participant, vector<string> completion) {
     string answer = "";
-    // - participant를 key로 해서 hash map에 숫자를 저장
-    // - completion을 순회하면서 participant에서 find함. 찾으면 map에서 지움
-    
-    // participant를 순회하면서 completion에 동일한 이름이 있는지 찾음.
-    // 찾으면 completion에서 삭제 (중복때문에)
-    
-    // 순회가 끝나면 participant에 남아있는 애를 출력
-    
 
-    vector<string>::iterator iter;
+    // 1. 정렬해서 비교하기 위해 sort()
+    sort(participant.begin(), participant.end());
+    sort(completion.begin(), completion.end());
+        
+    vector<string>::iterator iter_participant = participant.begin();
+    vector<string>::iterator iter_completion = completion.begin();
     
-    for(iter = participant.begin(); iter != participant.end(); iter++) {
-        auto it = find(completion.begin(), completion.end(), *iter);
-        if(it != completion.end()) {
-            participant.erase(remove(participant.begin(), participant.end(), *iter), participant.end());
+    for(; iter_participant != participant.end(); iter_participant++, iter_completion++) {
+        // 2. completion이 end()에 도달하면, participant의 마지막 원소가 완주하지 못한 선수
+        // 혹은 sort 상태에서 비교했을 때 두 원소가 다르면 iter_participant가 가리키는 게 완주하지 못한 선수
+        if(iter_completion == completion.end() || *iter_participant != *iter_completion) {
+            answer = *iter_participant;
+            break;
         }
     }
-
-   
-    answer = participant.back();
 
     return answer;
 }
