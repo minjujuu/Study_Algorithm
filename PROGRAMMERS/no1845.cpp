@@ -13,12 +13,12 @@ int solution(vector<int> nums)
     int answer = 0;
     sort(nums.begin(), nums.end());
     
-    int prev = 0;
+    int prev = 0, limit = nums.size()/2;
     vector<int>::iterator iter;
     for(iter = nums.begin(); iter != nums.end(); iter++) {        
         if(prev != *iter) {
             answer++;
-            if(answer == nums.size()/2)
+            if(answer == limit)
                 break;
         }
         prev = *iter;
